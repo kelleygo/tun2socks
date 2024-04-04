@@ -16,7 +16,7 @@ import (
 
 const (
 	// tcpWaitTimeout implements a TCP half-close timeout.
-	tcpWaitTimeout = 60 * time.Second
+	tcpWaitTimeout = 20 * time.Second
 )
 
 func handleTCPConn(originConn adapter.TCPConn) {

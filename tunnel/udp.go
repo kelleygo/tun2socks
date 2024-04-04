@@ -15,7 +15,7 @@ import (
 )
 
 // _udpSessionTimeout is the default timeout for each UDP session.
-var _udpSessionTimeout = 60 * time.Second
+var _udpSessionTimeout = 20 * time.Second
 
 func SetUDPTimeout(t time.Duration) {
 	_udpSessionTimeout = t
