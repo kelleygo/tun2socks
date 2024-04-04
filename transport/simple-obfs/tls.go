@@ -8,7 +8,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/xjasonlyu/tun2socks/v2/common/pool"
+	"github.com/kelleygo/tun2socks/v2/common/pool"
 )
 
 const (
