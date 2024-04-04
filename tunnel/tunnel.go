@@ -6,7 +6,7 @@ import (
 
 // Unbuffered TCP/UDP queues.
 var (
-	_tcpQueue = make(chan adapter.TCPConn,2)
+	_tcpQueue = make(chan adapter.TCPConn)
 	_udpQueue = make(chan adapter.UDPConn)
 )
 
