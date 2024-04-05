@@ -34,7 +34,7 @@ const (
 	// must remain idle before the first TCP keepalive
 	// packet is sent. Once this time is reached,
 	// tcpKeepaliveInterval option is used instead.
-	tcpKeepaliveIdle = 60 * time.Second
+	tcpKeepaliveIdle = 30 * time.Second
 
 	// tcpKeepaliveInterval specifies the interval
 	// time between sending TCP keepalive packets.
