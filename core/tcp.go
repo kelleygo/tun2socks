@@ -34,11 +34,11 @@ const (
 	// must remain idle before the first TCP keepalive
 	// packet is sent. Once this time is reached,
 	// tcpKeepaliveInterval option is used instead.
-	tcpKeepaliveIdle = 30 * time.Second
+	tcpKeepaliveIdle = 15 * time.Second
 
 	// tcpKeepaliveInterval specifies the interval
 	// time between sending TCP keepalive packets.
-	tcpKeepaliveInterval = 30 * time.Second
+	tcpKeepaliveInterval = 15 * time.Second
 )
 
 func withTCPHandler(handle func(adapter.TCPConn)) option.Option {
