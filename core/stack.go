@@ -63,7 +63,7 @@ func CreateStack(cfg *Config) (*stack.Stack, error) {
 		// to stack and cause race condition.
 		// Initiate transport protocol (TCP/UDP) with given handler.
 		withTCPHandler(cfg.TransportHandler.HandleTCP),
-// 		withUDPHandler(cfg.TransportHandler.HandleUDP),
+		withUDPHandler(cfg.TransportHandler.HandleUDP),
 
 		// Create stack NIC and then bind link endpoint to it.
 		withCreatingNIC(nicID, cfg.LinkEndpoint),
