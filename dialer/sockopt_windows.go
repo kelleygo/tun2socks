@@ -1,9 +1,7 @@
 package dialer
 
 import (
-	"context"
 	"encoding/binary"
-	"github.com/kelleygo/clashcore/component/resolver"
 	"net"
 	"syscall"
 	"unsafe"
@@ -23,11 +21,10 @@ func setSocketOptions(network, address string, c syscall.RawConn, opts *Options)
 
 	var innerErr error
 	err = c.Control(func(fd uintptr) {
-		//host, _, _ := net.SplitHostPort(address)
-		//ip := net.ParseIP(host)
-		ip, _ := resolver.ResolveIPv4(context.TODO(), address)
+		host, _, _ := net.SplitHostPort(address)
+		ip := net.ParseIP(host)
 
-		if ip.String() != "" && !ip.IsGlobalUnicast() {
+		if ip != nil && !ip.IsGlobalUnicast() {
 			return
 		}
 
@@ -43,7 +40,7 @@ func setSocketOptions(network, address string, c syscall.RawConn, opts *Options)
 				innerErr = bindSocketToInterface4(windows.Handle(fd), uint32(opts.InterfaceIndex))
 			case "tcp6", "udp6":
 				innerErr = bindSocketToInterface6(windows.Handle(fd), uint32(opts.InterfaceIndex))
-				if network == "udp6" && ip.String() == "" {
+				if network == "udp6" && ip == nil {
 					// The underlying IP net maybe IPv4 even if the `network` param is `udp6`,
 					// so we should bind socket to interface4 at the same time.
 					innerErr = bindSocketToInterface4(windows.Handle(fd), uint32(opts.InterfaceIndex))
