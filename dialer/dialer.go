@@ -41,13 +41,6 @@ func DialContext(ctx context.Context, network, address string) (net.Conn, error)
 
 func DialContextWithOptions(ctx context.Context, network, address string, opts *Options) (net.Conn, error) {
 	d := &net.Dialer{
-		Resolver: &net.Resolver{
-			PreferGo: true,
-			Dial: func(ctx context.Context, network, _ string) (net.Conn, error) {
-				var dialerTemp net.Dialer
-				return dialerTemp.DialContext(ctx, network, "8.8.8.8:53")
-			},
-		},
 		Control: func(network, address string, c syscall.RawConn) error {
 			return setSocketOptions(network, address, c, opts)
 		},
